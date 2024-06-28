@@ -8,19 +8,19 @@
               Contact Us
             </h4>
             <div class="contact_link_box">
-              <a href="">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <a href="https://maps.app.goo.gl/BYbDs9vrRneL9dpQ8" target="_blank" rel="noopener noreferrer">
+                <i class="fa fa-mriaap-marker" a-hidden="true"></i>
                 <span>
                   Location
                 </span>
               </a>
-              <a href="">
+              <a href="tel:0846251004">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                  Call +01 1234567890
+                  Call +84 846-251-004
                 </span>
               </a>
-              <a href="">
+              <a href="mailto:demo@gmail.com">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
                   demo@gmail.com
@@ -32,25 +32,25 @@
         <div class="col-md-4 footer-col">
           <div class="footer_detail">
             <a href="" class="footer-logo">
-              Feane
+              Real Pizza
             </a>
             <p>
-              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
+              The world of pizza lovers & families.
             </p>
             <div class="footer_social">
-              <a href="">
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
               </a>
-              <a href="">
+              <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
-              <a href="">
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
               </a>
-              <a href="">
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
                 <i class="fa fa-instagram" aria-hidden="true"></i>
               </a>
-              <a href="">
+              <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer">
                 <i class="fa fa-pinterest" aria-hidden="true"></i>
               </a>
             </div>
@@ -71,9 +71,9 @@
       <div class="footer-info">
         <p>
           &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a><br><br>
+          <a href="https://profile.fishu.tech/">Fishu & Friends</a><br><br>
           &copy; <span id="displayYear"></span> Distributed By
-          <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+          <a href="https://profile.fishu.tech/" target="_blank">Fishu</a>
         </p>
       </div>
     </div>
