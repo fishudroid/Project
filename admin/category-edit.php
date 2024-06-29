@@ -1,6 +1,12 @@
 <?php 
 include 'header.php';
+$id = !empty($_GET['id']) ? (int)$_GET['id'] : 0;
 $error ='';
+if($id){
+
+}else{
+    
+}
 if(isset($_POST['name'])){
     $name = $_POST['name'];
     $status = $_POST['status'];
