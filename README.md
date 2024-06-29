@@ -11,4 +11,12 @@ This project is licensed under the MIT License.
 ## Author
 
 * Fishu & Friends
-* Contact information (optional)
+
+## Contact
+
+Feel free to reach out if you have any questions or feedback!
+
+* **Email:** duc42963@huce.edu.vn
+* **Website:** https://profile.fishu.tech
+* **Facebook:** https://www.facebook.com/fishu.the.magical.fish
+* **GitHub:** @fishudroid
