@@ -1,31 +1,33 @@
 <?php 
 
 include 'header.php';
-$id = !empty($_GET['id']) ? (int)$_GET['id']:0;
+$id = !empty($_GET['id']) ? (int)$_GET['id'] : 0;
 $error ='';
-if($id){
-  $query = $conn->query("SELECT * FROM category WHERE id =$id");
-  $cat = $query->fetch_object();
-  if(isset($_POST['name'])){
-    $name = $_POST['name'];
-    $status = $_POST['status'];
-    if($name == ''){
-        $error = 'Tên danh mục không được trống';
+if($id) {
+    $query = $conn ->query("SELECT * FROM category WHERE id =$id");
+    $cat = $query ->fetch_object() ;
+    if(isset($_POST['name'])){
+        $name = $_POST['name'];
+        $status = $_POST['status'];
+        if($name == ''){
+            $error = 'Tên danh mục không được trống';
+        }
+    
+    
+        if(!$error){
+            $sql ="UPDATE category SET name = '$name', status = '$status' WHERE id = $id";
+    
+            if($conn ->query($sql)){  
+                header('location: category.php');
+            }else{
+                $error = 'Cập nhật không thành công, vui lòng thử lại';
+            }
+        }
     }
-if(!$error){
-  $sql = "UPDATE category SET name = '$name', status = '$status' WHERE id = $id";
-  
-  if($conn ->query($sql)){  
-    header('location: category.php');
 }else{
-    $error = 'Cập nhật không thành công, vui lòng thử lại';
-}
+    $error ='Bạn chưa chọn danh mục để sửa';
 }
 
-}else{
-  $error = 'Bạn chưa chọn danh mục để sửa';
-}
-}
 ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -49,7 +51,7 @@ if(!$error){
        
         <div class="form-group">
             <label for="">Tên danh mục</label>
-            <input type="text" value="<?php echo $cat->name;?>" class="form-control" name="name" placeholder="Input name">
+            <input type="text" value="<?php echo $cat ->name;?>" class="form-control" name="name" placeholder="Input name">
         </div>
          
         <div class="form-group">
@@ -57,13 +59,13 @@ if(!$error){
             
             <div class="radio">
                 <label>
-                    <input type="radio" name="status" value="1" <?php echo $cat->status == 1 ? 'checked' : '';?>>
+                    <input type="radio" name="status" value="1" <?php echo $cat->status == 1 ? 'checked' : ''?>>
                   Hiển thị
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="status" value="0"<?php echo $cat->status == 0 ? 'checked' : '';?>>
+                    <input type="radio" name="status" value="0" <?php echo $cat->status == 0 ? 'checked' : ''?>>
                   Tạm ẩn
                 </label>
             </div>
