@@ -1,4 +1,5 @@
 <?php 
+
 include 'header.php';
 $error ='';
 if(isset($_POST['name'])){
@@ -12,7 +13,7 @@ if(isset($_POST['name'])){
     if(!$error){
         $sql ="INSERT INTO category (name,status) VALUES('$name','$status')";
 
-        if($conn ->query($sql)){
+        if($conn ->query($sql)){  
             header('location: category.php');
         }else{
             $error = 'Thêm mới không thành công, vui lòng thử lại';
@@ -23,7 +24,7 @@ if(isset($_POST['name'])){
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Create category</h1>
+      <h1>Careate category</h1>
 
     </section>
     <!-- Main content -->

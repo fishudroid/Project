@@ -1,75 +1,98 @@
--- SQLBook: Code
 DROP DATABASE IF EXISTS Project;
 CREATE DATABASE Project;
-USE Project;
 
-CREATE TABLE Admin (
-    AdminID INT PRIMARY KEY AUTO_INCREMENT,
-    Username VARCHAR(100) NOT NULL,
-    Password VARCHAR(255) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
-    Role VARCHAR(50) NOT NULL
+USE Project; 
+
+Create table admin(
+Id int primary key auto_increment,
+Name varchar(100) not null,
+Email varchar(100) not null,
+Password varchar(100) not null,
+Role varchar(50) null default ‘member’
 );
 
-CREATE TABLE Category (
-    categoryID INT PRIMARY KEY AUTO_INCREMENT,
-    CategoryName VARCHAR(100) NOT NULL,
-    Description TEXT
+CREATE TABLE category(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    status TINYINT NULL DEFAULT '1'
 );
 
-CREATE TABLE Product (
-    ProductID INT PRIMARY KEY AUTO_INCREMENT,
-    categoryID INT,
-    ProductName VARCHAR(100) NOT NULL,
-    Price DECIMAL(10, 2) NOT NULL,
-    Stock INT NOT NULL,
-    Description TEXT,
-    ImageURL VARCHAR(255),
-    FOREIGN KEY (categoryID) REFERENCES Category(categoryID)
+CREATE TABLE product(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE, 
+    price FLOAT NOT NULL,
+    sale FLOAT NULL DEFAULT '0',
+    image VARCHAR(200) NOT NULL,
+    category_id INT NOT NULL,
+    status TINYINT NULL DEFAULT '1',
+    FOREIGN KEY(category_id) REFERENCES category(id) 
 );
 
-CREATE TABLE Customer (
-    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100) NOT NULL,
-    Phone VARCHAR(15),
-    Email VARCHAR(100) NOT NULL,
-    Address VARCHAR(255),
-    Password VARCHAR(255) NOT NULL
+CREATE TABLE customer(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NULL,
+    status TINYINT NULL DEFAULT '1'
 );
 
-CREATE TABLE Orders (
-    OrderID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID INT,
-    OrderDate DATETIME NOT NULL,
-    TotalAmount DECIMAL(10, 2) NOT NULL,
-    Status VARCHAR(50) NOT NULL,
-    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
+CREATE TABLE orders(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NULL,
+    email VARCHAR(100) NULL, 
+    phone VARCHAR(100) NULL,
+    address VARCHAR(255) NULL,
+    customer_id INT NOT NULL,
+    status TINYINT NULL DEFAULT '1',
+    order_note VARCHAR(255) NULL,
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 
-CREATE TABLE OrderDetail (
-    OrderDetailID INT PRIMARY KEY AUTO_INCREMENT,
-    OrderID INT,
-    ProductID INT,
-    Quantity INT NOT NULL,
-    UnitPrice DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+CREATE TABLE order_detail(
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price FLOAT NOT NULL,
+    PRIMARY KEY (order_id, product_id),
+    FOREIGN KEY(order_id) REFERENCES orders(id),
+    FOREIGN KEY(product_id) REFERENCES product(id)
 );
 
-CREATE TABLE Favorite (
-    FavoriteID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID INT,
-    ProductID INT,
-    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
-    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+CREATE TABLE favorite(
+    customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    PRIMARY KEY (customer_id, product_id),
+    FOREIGN KEY(customer_id) REFERENCES customer(id),
+    FOREIGN KEY(product_id) REFERENCES product(id)
 );
 
-CREATE TABLE Comments (
-    CommentID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID INT,
-    ProductID INT,
-    CommentText TEXT NOT NULL,
-    CommentDate DATETIME NOT NULL,
-    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
-    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+CREATE TABLE comments(
+    customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    comment TEXT NOT NULL,
+    status TINYINT NULL DEFAULT '1',
+    PRIMARY KEY (customer_id, product_id),
+    FOREIGN KEY(customer_id) REFERENCES customer(id),
+    FOREIGN KEY(product_id) REFERENCES product(id)
+);
+
+CREATE TABLE ratings(
+    customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    stars FLOAT NOT NULL,
+    PRIMARY KEY (customer_id, product_id),
+    FOREIGN KEY(customer_id) REFERENCES customer(id),
+    FOREIGN KEY(product_id) REFERENCES product(id)
+);
+
+CREATE TABLE rentals(
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    PRIMARY KEY (order_id, product_id),
+    FOREIGN KEY(order_id) REFERENCES orders(id),
+    FOREIGN KEY(product_id) REFERENCES product(id)
 );

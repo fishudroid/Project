@@ -40,10 +40,10 @@ $data = $conn -> query("SELECT * FROM category Order By id DESC");
             <tr>
                 <td><?php echo $cat ->id ; ?></td>
                 <td><?php echo $cat ->name ; ?></td>
-                <td><?php echo $cat ->status ; ?></td>
+                <td><?php echo $cat ->status == 0 ? 'Tạm ẩn' : 'Hiển thị' ; ?></td>
                 <td class="text-right">
-                    <a href="" class="btn btn-sm btn-primary"><i class="fa fa fa-edit"></i> Edit</a>
-                    <a href="" class="btn btn-sm btn-danger"><i class="fa fa fa-trash"></i> Del</a>
+                    <a href="category-edit.php?id=<?php echo $cat ->id ;?>" class="btn btn-sm btn-primary"><i class="fa fa fa-edit"></i> Edit</a>
+                    <a onclick="return confirm('Bạn có chắc chắn xóa không')"  href="" class="category-delete.php?id=<?php echo $cat ->id; ?>"><i class="fa fa fa-trash"></i> Del</a>
                 </td>
        <?php endwhile;?>
      </table>
