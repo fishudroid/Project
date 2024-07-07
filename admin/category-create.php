@@ -2,7 +2,7 @@
 $error = ''; 
 if (isset($_POST['name'])) {
   $name = $_POST['name']; 
-  $status =$_POST['status']; 
+  $status = $_POST['status'];
   
   if ($name == '' ) { 
     $error = 'Tên danh mục không được trống';

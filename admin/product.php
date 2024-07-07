@@ -1,8 +1,8 @@
 <?php include 'header.php';
-$data = $conn->query("SELECT * FROM product Order By id DESC"); 
+$data = $conn->query("SELECT product.*, category.name as cat_name FROM product JOIN category ON category.id = product.category_id Order By id DESC"); 
 if (!empty($_GET['search_key'])) { 
     $key = $_GET['search_key']; 
-    $data = $conn->query("SELECT * FROM product WHERE name LIKE '%$key%' Order By id DESC");
+    $data = $conn->query("SELECT product.*, category.name as cat_name FROM product JOIN category ON category.id = product.category_id WHERE product.name LIKE '%$key%' Order By product.id DESC");
 }
 ?>
   <div class="content-wrapper">
@@ -46,7 +46,7 @@ if (!empty($_GET['search_key'])) {
             <tr>
                 <td><?php echo $cat ->id ; ?></td>
                 <td><?php echo $cat ->name ; ?></td>
-                <td><?php echo $cat ->category_id; ?></td>
+                <td><?php echo $cat ->cat_name; ?></td>
                 <td>
                   <?php echo $cat ->price ; ?>
                   
@@ -60,8 +60,8 @@ if (!empty($_GET['search_key'])) {
                   
                 </td>
                 <td class="text-right">
-                    <a href="product-edit.php?id=<?php echo $cat ->id ;?>" class="btn btn-sm btn-primary"><i class="fa fa fa-edit"></i> Edit</a>
-                    <a onclick="return confirm('Bạn có chắc chắn xóa không')"  href="" class="product-delete.php?id=<?php echo $cat ->id; ?>"><i class="fa fa fa-trash"></i> Delete</a>
+                    <a href="product-edit.php?id=<?php echo $prod ->id ;?>" class="btn btn-sm btn-primary"><i class="fa fa fa-edit"></i> Edit</a>
+                    <a onclick="return confirm('Bạn có chắc chắn xóa không')"  href="" class="product-delete.php?id=<?php echo $prod ->id; ?>"><i class="fa fa fa-trash"></i> Delete</a>
                 </td>
        <?php endwhile;?>
      </table>
