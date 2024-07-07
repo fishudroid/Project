@@ -15,7 +15,7 @@ if(isset($_POST['name'])){
     }
     if(!$error){
         $sql ="INSERT INTO category (name,status) VALUES('$name','$status')";
-
+    
         if($conn ->query($sql)){  
             header('location: category.php');
         }else{

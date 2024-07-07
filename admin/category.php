@@ -1,5 +1,9 @@
 <?php include 'header.php';
 $data = $conn -> query("SELECT * FROM category Order By id DESC");
+if(!empty($_GET['search_key'])){
+  $key =$_GET['search_key'];
+  $data = $conn ->query("SELECT * FROM category WHERE name LIKE '%$key%' Oder By id DESC")
+}
 ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -12,10 +16,10 @@ $data = $conn -> query("SELECT * FROM category Order By id DESC");
       <div class="box">
         <div class="box-body">
             
-            <form action="" method="POST" class="form-inline" role="form">
+            <form action="" method="GET" class="form-inline" >
             
                 <div class="form-group">
-                    <input type="email" class="form-control" id="" placeholder="Input field">
+                    <input class="form-control" name="search_key" placeholder="Input field">
                 </div>
             
                 
@@ -43,7 +47,7 @@ $data = $conn -> query("SELECT * FROM category Order By id DESC");
                 <td><?php echo $cat ->status == 0 ? 'Tạm ẩn' : 'Hiển thị' ; ?></td>
                 <td class="text-right">
                     <a href="category-edit.php?id=<?php echo $cat ->id ;?>" class="btn btn-sm btn-primary"><i class="fa fa fa-edit"></i> Edit</a>
-                    <a onclick="return confirm('Bạn có chắc chắn xóa không')"  href="" class="category-delete.php?id=<?php echo $cat ->id; ?>"><i class="fa fa fa-trash"></i> Delete</a>
+                    <a onclick="return confirm('Bạn có chắc chắn xóa không')" href="category-delete.php?id="<?php echo $cat ->id; ?>><i class="fa fa fa-trash"></i>Del</a>
                 </td>
        <?php endwhile;?>
      </table>
