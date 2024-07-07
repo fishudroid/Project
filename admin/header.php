@@ -1,6 +1,11 @@
 <?php 
 ob_start();
+session_start()
 include '../connect.php';
+if (empty($_SESSION['admin_login'])){
+  header('location:login.php');
+}
+$admin = $_SESSION['admin_login'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,7 +64,7 @@ include '../connect.php';
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo $admin->name;?></span>
             </a>
           </li>
           
@@ -80,8 +85,10 @@ include '../connect.php';
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p><?php echo $admin->name;?></p>
+          <a href="logout.php"><i class="fa fa-circle text-success"></i> Logout</a>
+          <a href="profile.php"><i class="fa fa-circle text-success"></i> Profile</a>
+          <a href="password"><i class="fa fa-circle text-success"></i> Password</a>
         </div>
       </div>
      
