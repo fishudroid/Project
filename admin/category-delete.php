@@ -34,6 +34,7 @@ if($id){
                 <strong>Lỗi !!</strong> <?php echo $error; ?>
             </div>
            <?php endif; ?> 
+           <a href="category.php" class="btn btn-warning"><i class="fa fa-arrow-left"></i>Quay lại</a>
       </div>
       <!-- /.box -->
     </section>

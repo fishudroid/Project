@@ -16,10 +16,10 @@ if (!empty($_GET['search_key'])) {
       <div class="box">
         <div class="box-body">
             
-            <form action="" method="POST" class="form-inline" role="form">
+            <form action="" method="GET" class="form-inline" role="form">
             
               <div class="form-group">
-                <input type="text" class="form-control" id="key" placeholder="Nhập tên cần tìm">
+                <input class="form-control" name="search_key" placeholder="Nhập tên cần tìm">
               </div>
             
             
