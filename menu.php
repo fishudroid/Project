@@ -1,22 +1,41 @@
-<?php include 'header.php';?> 
+<?php 
+include 'header.php';
+$cats=$conn->query("SELECT id,name FROM category Order By name ASC");
+$product=$conn->query("SELECT *,price-(price*sale)/100 as salePrice FROM product Order By id DESC");
+if (!empty($_GET['cat'])){
+  $catId=$_GET['cat'];
+  $product=$conn->query("SELECT *,price-(price*sale)/100 as salePrice FROM product  WHERE cat Order By id DESC");
+  $catQuery=$conn->query("SELECT id,name FROM category WHERE id=$category");
+  if ($catQuery->num_rows>0){
+    $category = $catQuery->fetch_object();
+  }
+}
+?> 
   <!-- food section -->
 
   <section class="food_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Our Menu
+          <?php if($category):?>
+            <?php echo $category->name;?>
+            <?php else:?>
+          Our Products
+          <?php endif:?>
         </h2>
       </div>
 
       <ul class="filters_menu">
-        <li class="active" data-filter="*">All</li>
-        <li data-filter=".burger">Burger</li>
-        <li data-filter=".pizza">Pizza</li>
-        <li data-filter=".pasta">Pasta</li>
-        <li data-filter=".fries">Fries</li>
+        <li class="active">
+          <a herf="menu.php">All</a>
+        </li>
+        <?php while($cat=$cats->fetch_object());?>
+        <li><a herf="menu.php?cat=<?php echo $cat->id;?>"><?php echo $cat->name;?></a></li>
+        <?php endwhile;?>
       </ul>
-
+<div class="row grid">
+  <?php while ($prod=$products->fetch_object()):?>
+    <div class="col-sm
       <div class="filters-content">
         <div class="row grid">
           <div class="col-sm-6 col-lg-4 all pizza">

@@ -39,6 +39,16 @@ CREATE TABLE customer(
     status TINYINT NULL DEFAULT '1'
 );
 
+CREATE TABLE cart(
+    id INT primary key auto_increment,
+    product_id INT NOT NULL,
+     customer_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price FLOAT NOT NULL,
+    FOREIGN KEY(product_id) REFERENCES product(id),
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+
 CREATE TABLE orders(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NULL,
@@ -97,3 +107,30 @@ CREATE TABLE rentals(
     FOREIGN KEY(order_id) REFERENCES orders(id),
     FOREIGN KEY(product_id) REFERENCES product(id)
 );
+
+Insert into admin(name,email,password,Role) values
+('admin root','admin@gmail.com','123456','admin'),
+('Trần Văn Nam','namtv@gmail.com','123456','number');
+
+
+
+Insert into 'category' ('id','name','status') values
+(1,'Burger',1),
+(2,'pizza',1),
+(3,'Khoai tây chiên'1);
+
+
+
+Insert into 'product' ('id','name','price','sale','image','description','category_id','status') values
+(1,'Burger gà',40000,20,),
+(2,'Pizza hải sản',200000,15,)
+
+
+
+
+
+
+
+
+
+
