@@ -23,6 +23,7 @@ CREATE TABLE product(
     price FLOAT NOT NULL,
     sale FLOAT NULL DEFAULT '0',
     image VARCHAR(200) NOT NULL,
+    description text null,
     category_id INT NOT NULL,
     status TINYINT NULL DEFAULT '1',
     FOREIGN KEY(category_id) REFERENCES category(id) 

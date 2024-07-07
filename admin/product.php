@@ -25,7 +25,7 @@ if (!empty($_GET['search_key'])) {
                 
               
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                <a href="product-create.php" class="btn btn-success"><i class="fa fa-plus"></i>Thêm mới</a>
+                <a href="product-create.php" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
             </form>
             
 

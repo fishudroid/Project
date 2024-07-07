@@ -36,12 +36,12 @@ if (!empty($_GET['search_key'])) {
           <tbody>
             <?php while ($cat = $data->fetch_object()) : ?>
               <tr>
-                <td><?php echo $cat->$id; ?></td>
-                <td><?php echo $cat->$name; ?></td>
-                <td><?php echo $cat->$status == 0 ? 'Hiện' : 'Ẩn'; ?></td>
+                <td><?php echo $cat->id; ?></td>
+                <td><?php echo $cat->name; ?></td>
+                <td><?php echo $cat->status == 0 ? 'Ẩn' : 'Hiện'; ?></td>
                 <td class="text-right">
-                  <a href="category-edit.php?id=<?php echo $prod->id; ?>" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Chỉnh sửa</a>
-                  <a onclick="return confirm('Bạn chắc chắn xoá danh mục này không ?')" href="category-delete.php?id=<?php echo $prod->id; ?>" class="btn btn-sm btn-primary"><i class="fa fa-trash"></i> Xoá</a>
+                  <a href="category-edit.php?id=<?php echo $cat->id; ?>" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Chỉnh sửa</a>
+                  <a onclick="return confirm('Bạn chắc chắn xoá danh mục này không ?')" href="category-delete.php?id=<?php echo $cat->id; ?>" class="btn btn-sm btn-primary"><i class="fa fa-trash"></i> Xoá</a>
                 </td>
               </tr>
             <?php endwhile; ?>

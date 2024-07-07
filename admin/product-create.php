@@ -1,50 +1,51 @@
 <?php include 'header.php';
+$cats = $conn->query("SELECT id, name FROM category ORDER BY id ASC");
 $errors = [];
 $image = '';
-$cats = $conn->query ("SELECT id, name [FROM category Order By name ASC");
-if (!empty($FILE['img']['name'])) {
-  $image = time().'-'.$_FILES['img']['name'];
-  $tmp_image = $_FILES['img']['name'];
+if (!empty($_FILES['img']['name'])) {
+  $image = time().'-'. $_FILES['img']['name'];
+  $tmp_name = $_FILES['img']['tmp_name'];
 
-  move_uploaded_file($tmp_image, '../uploads/'.$image);
+  move_uploaded_file($tmp_name, '../uploads/'. $image);
 }
 if (isset($_POST['name'])) {
   $name = $_POST['name'];
   $price = $_POST['price'];
-  $sale = !empty($_POST['sale']) ? $_POST['price'] : 0 ;
+  $sale = !empty($_POST['sale']) ? $_POST['sale'] : 0;
   $category_id = $_POST['category_id'];
   $description = $_POST['description'];
   $status = $_POST['status'];
 
   if ($name == '') {
-    $errors ['name'] = 'Tên sản phẩm không được trống';
-  }
-
-  if ($category_id == '') {
-    $errors ['category_id'] = 'Danh mục sản phẩm không được trống';
-  }
-
-  if ($image == '') {
-    $errors ['image'] = 'Ảnh sản phẩm không được trống';
+    $errors['name'] = 'Tên sản phẩm không được trống';
   }
 
   if ($price == '') {
-    $errors ['price'] = 'Giá sản phẩm không được trống';
-  } else if (is_numeric($price)) {
-    $errors ['price'] = 'Giá sản phẩm phải là số';
+    $errors['price'] = 'Giá sản phẩm không được trống';
+  } else if (!is_numeric($price)) {
+    $errors['price'] = 'Giá sản phẩm phải là số';
   }
-  
-  if ($sale != '' && is_numeric($sale)) {
-    $errors ['sale'] = 'Giá khuyến mãi phải là số';
-  } else if ($sale < 0 || $sale >100) {
-    $errors ['sale'] = 'Tỷ lệ khuyến phải nằm trong khoảng 0 - 100';
+
+  if ($sale == '' && !is_numeric($sale)) {
+    $errors['sale'] = 'Tỷ lệ giảm giá phải là số';
+  } else if ($sale < 0 || $sale > 100) {
+    $errors['sale'] = 'Tỷ lệ giảm giá phải nằm từ 0 đến 100';
   }
+
+  if ($category_id == '') {
+    $errors['category_id'] = 'Danh mục sản phẩm không được trống';
+  }
+
+  if ($image == '') {
+    $errors['image'] = 'Ảnh sản phẩm không được trống';
+  }
+
   $query = $conn->query("SELECT * FROM product WHERE name = '$name'");
   if ($query->num_rows > 0) {
-    $error = 'Tên sản phẩm đã được sử dụng';
+    $errors['name'] = 'Tên sản phẩm đã được sử dụng';
   }
-  if (!$error) {
-    $sql = "INSERT INTO product (name, price, sale, image, category_id, description, status) VALUES ('$name', '$price', '$sale', '$image', '$category_id', '$description' , '$status')";
+  if (!$errors) {
+    $sql = "INSERT INTO product (name, price, sale, image, category_id, description, status) VALUES ('$name', '$price', '$sale', '$image', '$category_id', '$description' '$status')";
     if ($conn->query($sql)) {
       header('location: product.php');
     } else {
@@ -54,26 +55,27 @@ if (isset($_POST['name'])) {
 }
 ?>
 <div class="content-wrapper">
-
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Create Product</h1>
-  </section>
+    <h1>Thêm sản phẩm</h1>
 
+  </section>
   <!-- Main content -->
   <section class="content">
+
     <div class="box">
       <div class="box-body">
         <?php if ($errors) : ?>
           <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <?php foreach($errors as $error) : ?>
-              <li>Lỗi: <?php echo $error; ?></li>
-            <?php endforeach; ?>
+              <li><?php echo $error;?></li>
+            <?php endforeach;?>
           </div>
         <?php endif; ?>
 
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" role="multipart/form-data">
+
           <div class="row">
             <div class="col-md-8">
 
@@ -82,74 +84,78 @@ if (isset($_POST['name'])) {
 
                   <div class="form-group">
                     <label for="">Tên sản phẩm</label>
-                    <input type="text" class="form-control" name="name" placeholder="Nhập tên sản phẩm">
+                    <input type="text" class="form-control" name="name" placeholder="Điền tên sản phẩm muốn thêm">
                   </div>
 
                   <div class="form-group">
-                    <label for="">Mô tả</label>
-                    <textarea name="Description" class="form-control" rows="8" placeholder="Mô tả sản phẩm"></textarea>
+                    <label for="">Mô tả sản phẩm</label>
+                    <textarea name="description" class="form-control" rows="8" placeholder="Nhập nội dung sản phẩm"></textarea>
                   </div>
+
                 </div>
               </div>
-
             </div>
             <div class="col-md-4">
+
               <div class="panel panel-default">
                 <div class="panel-body">
                   <div class="form-group">
                     <div class="form-group">
                       <label for="">Chọn danh mục</label>
 
-                      <name="category_id" class="form-control">
-                        <option value=""></option>
-                        <?php while($cat = $cats -> fetch_object()) : ?>
-                          <option value=""><?php echo $cat -> id; ?></option>
-                        <?php endwhile; ?>
-                      </name>
-
+                      <select name="category_id" class="form-control">
+                        <option value="">---- Chọn một danh mục ----</option>
+                        <?php while($cat = $cats->fetch_object()) : ?>
+                          <option value="<?php echo $cat->id;?>"><?php echo $cat->name;?></option>
+                        <?php endwhile;?>
+                      </select>
                     </div>
 
                     <div class="form-group">
                       <label for="">Giá sản phẩm</label>
-                      <input type="number" class="form-control" name="price" placeholder="Nhập giá">
+                      <input type="number" class="form-control" name="price" placeholder="Điền giá sản phẩm">
                     </div>
 
                     <div class="form-group">
-                      <label for="">Giá khuyến mãi</label>
-                      <input type="number" class="form-control" name="sale" placeholder="Nhập giá khuyến mãi">
+                      <label for="">Giá Khuyến Mãi</label>
+                      <input type="number" class="form-control" name="sale" placeholder="Điền tỷ lệ khuyến mãi sản phẩm">
                     </div>
 
-                    <label for="">Trạng thái</label>
-
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="status" value="1" checked=>
-                        Hiển thị
-                      </label>
+                    <div class="form-group">
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="status" value="1" checked=>
+                          Hiển thị
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="status" value="0" checked=>
+                          Ẩn
+                        </label>
+                      </div>
                     </div>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="status" value="0">
-                        Tạm ẩn
-                      </label>
+                    <div class="form-group">
+                      
+                      <label for="">Ảnh sản phẩm</label>
+                      <input type="file" class="form-control" name="img">
+                      
                     </div>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lưu lại</button>
+                    <a href="category.php" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Quay lại</a>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                  <div class="form-group">
-                    <label for="">Ảnh sản phẩm</label>
-                    <input type="file" class="form-control" name="image">
-                  </div>
-
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lưu lại</button>
-                  <a href="product.php" class="btn btn-warning"><i class="fa fa-arrow-left"></i>Quay lại</a>
         </form>
+
       </div>
     </div>
+    <!-- /.box -->
+  </section>
+
 </div>
-</div>
-</div>
-</div>
-<!-- /.box -->
-</section>
-</div>
+
 <?php include 'footer.php'; ?>

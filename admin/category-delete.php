@@ -8,6 +8,7 @@ if($id){
   } else {
     if($conn -> query("DELETE FROM category WHERE id = $id")){  
       header('location: category.php');
+      
     }else{
       $error = 'Xóa thất bại !';
     }
