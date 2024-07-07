@@ -8,7 +8,7 @@ Id int primary key auto_increment,
 Name varchar(100) not null,
 Email varchar(100) not null,
 Password varchar(100) not null,
-Role varchar(50) null default ‘member’
+Role varchar(50) null default 'member'
 );
 
 CREATE TABLE category(
