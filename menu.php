@@ -21,7 +21,7 @@ if (!empty($_GET['cat'])){
             <?php echo $category->name;?>
             <?php else:?>
           Our Products
-          <?php endif:?>
+          <?php endif;?>
         </h2>
       </div>
 
@@ -29,7 +29,7 @@ if (!empty($_GET['cat'])){
         <li class="active">
           <a herf="menu.php">All</a>
         </li>
-        <?php while($cat=$cats->fetch_object());?>
+        <?php while($cat=$cats->fetch_object()) :?>
         <li><a herf="menu.php?cat=<?php echo $cat->id;?>"><?php echo $cat->name;?></a></li>
         <?php endwhile;?>
       </ul>
@@ -733,4 +733,4 @@ if (!empty($_GET['cat'])){
   </section>
 
   <!-- end food section -->
-  <?php include 'footer.php';?> 
+<?php include 'footer.php';?>

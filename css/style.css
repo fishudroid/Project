@@ -1005,3 +1005,21 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+
+.product-item {
+  position: relative;
+}
+
+.product-item span.sale-notification {
+  position: absolute;
+  display: inline-block;
+  background-color: red;
+  border: 0.5px solid rgb(70, 68, 68);
+  padding: 0.25px;
+  top: 25px;
+  right: 20px;
+  z-index: 1000;
+  color: #ffffff;
+  font-style: italic;
+  border-radius: 10px;
+}

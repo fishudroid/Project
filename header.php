@@ -1,4 +1,6 @@
-
+<?php
+include 'connect.php'; 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,3 +140,10 @@
         </nav>
       </div>
     </header>
+    <?php
+      $url = $_SERVER['SCRIPT_NAME'];
+      if (strpos($url,'index.php')) {
+        include'banner.php';
+      }
+    ?>
+  </div>

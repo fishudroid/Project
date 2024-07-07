@@ -1,15 +1,16 @@
-<?php 
+<?php
 ob_start();
 session_start();
 include '../connect.php';
 if (empty($_SESSION['admin_login'])) {
-  header( "location: login:php");
+  header('location: login.php');
 }
 
 $admin = $_SESSION['admin_login'];
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,94 +37,126 @@ $admin = $_SESSION['admin_login'];
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
+  <!-- Site wrapper -->
+  <div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="index.php" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="index.php" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>A</b>LT</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Admin</b>LTE</span>
       </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
 
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-      
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $admin->name;?></span>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Messages: style can be found in dropdown.less-->
+
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu notification-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <span class="hidden-xs"><?php echo $admin->name; ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <ul class="menu">
+                    <li>
+                      <a href="#">
+                        <i class="fa fa-user"></i> Hồ sơ của bạn
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="password.php">
+                        <i class="fa fa-key"></i> Đổi mật khẩu
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="logout.php"
+                        <i class="fa fa-power-off"></i> Đăng xuất
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <a href="profile.php" style="font-size:14px"><?php echo $admin->name; ?></a>
+          </div>
+        </div>
+
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+
+
+          <li>
+            <a href="index.php">
+              <i class="fa fa-home"></i> <span>Bảng điều khiển</span>
             </a>
           </li>
-          
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-th"></i> <span>Danh mục</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="category.php"><i class="fa fa-circle-o"></i>Danh sách</a></li>
+              <li><a href="category-create.php"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+            </ul>
+          </li>
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-th"></i> <span>Sản Phẩm</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="product.php"><i class="fa fa-circle-o"></i>Danh sách</a></li>
+              <li><a href="product-create.php"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+            </ul>
+          </li>
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-th"></i> <span>Tài Khoản</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="profile.php"><i class="fa fa-user"></i>Hồ Sơ</a></li>
+              <li><a href="password.php"><i class="fa fa-key"></i> Đổi mật khẩu</a></li>
+              <li><a href="logout.php"><i class="fa fa-power-off"></i> Đăng xuất</a></li>
+            </ul>
+          </li>
         </ul>
-      </div>
-    </nav>
-  </header>
-
-  <!-- =============================================== -->
-
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p><?php echo $admin->name;?></p>
-          <a href="logout.php"><i class="fa fa-circle text-success"></i> Logout</a>
-          <a href="profile.php"><i class="fa fa-circle text-success"></i> Profile</a>
-          <a href="password"><i class="fa fa-circle text-success"></i> Password</a>
-        </div>
-      </div>
-     
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-      
-    
-        <li>
-          <a href="index.php">
-            <i class="fa fa-home"></i> <span>Dashboard</span>
-            <small class="label pull-right bg-green">Hot</small>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-th"></i> <span>Category</span> <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="category.php"><i class="fa fa-circle-o"></i>Danh sách</a></li>
-            <li><a href="category-create.php"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-th"></i> <span>Product</span> <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="product.php"><i class="fa fa-circle-o"></i>Danh sách</a></li>
-            <li><a href="product-create.php"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+      </section>
+      <!-- /.sidebar -->
+    </aside>

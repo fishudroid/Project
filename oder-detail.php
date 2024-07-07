@@ -3,9 +3,9 @@ include 'header.php';
 if (!$customer){
     header('location:login.php');
 }
-$customer_id=$customer->id;
-$id=!empty($_GET)['id']?(int)$_GET['id']:0;
-$sql="SELECT od.price ,od.quantity, SUM(od.price*od.quantity) as total,p.name FROM oders_detail od JOIN produc p ON p.id=od.product_id WHERE od.order_id=$id GROUP BY p.id";
+$customer_id = $customer -> id;
+$id = !empty($_GET['id']) ? (int)$_GET['id'] : 0;
+$sql = "SELECT od.price ,od.quantity, SUM(od.price*od.quantity) as total,p.name FROM oders_detail od JOIN produc p ON p.id=od.product_id WHERE od.order_id=$id GROUP BY p.id";
 $query =$conn->query($sql);
 ?>
 <section class="food_section layout_padding">
@@ -29,8 +29,7 @@ $query =$conn->query($sql);
         </tr>
 </thead>
 <tbody>
-    <?php $total=1;while ($cart=$query->fetch_object());
-    ?>
+    <?php $total = 1; while ($cart=$query->fetch_object()) :?>
     <tr>
         <td>
            <?php echo $n;?>

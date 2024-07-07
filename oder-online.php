@@ -27,8 +27,7 @@ $query =$conn->query($sql);
         </tr>
 </thead>
 <tbody>
-    <?php $total=1;while ($cart=$query->fetch_object());
-    ?>
+    <?php $total = 1; while($od = $query->fetch_object()) :?>
     <tr>
         <td>
            <?php echo $n;?>
@@ -41,13 +40,16 @@ $query =$conn->query($sql);
 <td><?php echo number_format($od->total);?>vnđ</td>
         </form>
 </td>
-<td><?php echo $cart->price;?></td>
-<td><?php echo $cart->sub_total;?></td>
+<td><?php echo $od->price;?></td>
+<td><?php echo $od->sub_total;?></td>
 <td>
-    <a herf="cart_process.php?cart_id=<?php echo cart->id;?>&action=delete" class="btn btn-sm btn-danger">Chi Tiết</a>
+    <a herf="cart_process.php?cart_id=<?php echo $od->id;?>&action=delete" class="btn btn-sm btn-danger">Chi Tiết</a>
 </td>
 </tr>
-<?php $n++; endwhile;?>
+<?php 
+    $n++; 
+    endwhile;
+?>
 </tbody>
 </table>
 <div class="text-center">
