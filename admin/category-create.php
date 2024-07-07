@@ -9,7 +9,10 @@ if(isset($_POST['name'])){
         $error = 'Tên danh mục không được trống';
     }
 
-
+    $query = $conn -> query("SELECT * FROM category WHERE name = '$name'");
+    $if( $query -> num_rows > 0){
+      $error = 'Tên danh mục đã được sử dụng'
+    }
     if(!$error){
         $sql ="INSERT INTO category (name,status) VALUES('$name','$status')";
 
