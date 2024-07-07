@@ -19,7 +19,7 @@ $data = $conn -> query("SELECT * FROM category Order By id DESC");
                 </div>
             
                 
-            
+              
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 <a href="category-create.php" class="btn btn-success"><i class="fa fa-plus"></i>Thêm mới</a>
             </form>
