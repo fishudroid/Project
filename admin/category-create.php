@@ -1,30 +1,30 @@
-<?php 
-
-include 'header.php';
-$error ='';
-if(isset($_POST['name'])){
-    $name = $_POST['name'];
-    $status = $_POST['status'];
-    if($name == ''){
-        $error = 'Tên danh mục không được trống';
+<?php include 'header.php';
+$error = ''; 
+if (isset($_POST['name'])) {
+  $name = $_POST['name']; 
+  $status = $_POST['status'];
+  
+  if ($name == '' ) { 
+    $error = 'Tên danh mục không được trống';
+  } 
+  $query = $conn->query("SELECT * FROM category WHERE name = '$name'"); 
+  if ($query->num_rows > 0) { 
+    $error = 'Tên danh mục đã được sử dụng';
+  } 
+  if (!$error) { 
+    $sql = "INSERT INTO category (name, status) VALUES ('$name', '$status')"; 
+    if ($conn->query($sql)) { 
+      header('location: category.php'); 
+    } else { 
+      $error = 'Thêm mới không thành công, vui lòng thử lại';
     }
-
-
-    if(!$error){
-        $sql ="INSERT INTO category (name,status) VALUES('$name','$status')";
-
-        if($conn ->query($sql)){  
-            header('location: category.php');
-        }else{
-            $error = 'Thêm mới không thành công, vui lòng thử lại';
-        }
-    }
+  }
 }
 ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Careate category</h1>
+      <h1>Thêm danh mục</h1>
 
     </section>
     <!-- Main content -->
@@ -43,7 +43,7 @@ if(isset($_POST['name'])){
        
         <div class="form-group">
             <label for="">Tên danh mục</label>
-            <input type="text" class="form-control" name="name" placeholder="Input name">
+            <input type="text" class="form-control" name="name" placeholder="Điền tên danh mục muốn tạo">
         </div>
          
         <div class="form-group">
@@ -57,7 +57,7 @@ if(isset($_POST['name'])){
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="status" value="0">
+                    <input type="radio" name="status" value="0" checked=>
                   Tạm ẩn
                 </label>
             </div>

@@ -1,10 +1,11 @@
 <?php 
 ob_start();
-session_start()
+session_start();
 include '../connect.php';
-if (empty($_SESSION['admin_login'])){
-  header('location:login.php');
+if (empty($_SESSION['admin_login'])) {
+  header( "location: login:php");
 }
+
 $admin = $_SESSION['admin_login'];
 ?>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ $admin = $_SESSION['admin_login'];
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Blank Page</title>
+  <title>Admin Control</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -22,6 +23,7 @@ $admin = $_SESSION['admin_login'];
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
@@ -40,7 +42,7 @@ $admin = $_SESSION['admin_login'];
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
