@@ -1,5 +1,9 @@
 <?php include 'header.php';
-$data = $conn -> query("SELECT * FROM category Order By id DESC");
+$data = $conn->query("SELECT * FROM category Order By id DESC"); 
+if (!empty($_GET['search_key'])) { 
+    $key = $_GET['search_key']; 
+    $data = $conn->query("SELECT * FROM category WHERE name LIKE '%$key%' Order By id DESC");
+}
 ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
