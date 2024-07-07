@@ -73,7 +73,7 @@ if (isset($_POST['name'])) {
           </div>
         <?php endif; ?>
 
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="" method="GET" enctype="multipart/form-data">
           <div class="row">
             <div class="col-md-8">
 
@@ -145,17 +145,11 @@ if (isset($_POST['name'])) {
         </form>
       </div>
     </div>
-
 </div>
 </div>
-
-
-
 </div>
 </div>
 <!-- /.box -->
 </section>
-
 </div>
-
 <?php include 'footer.php'; ?>

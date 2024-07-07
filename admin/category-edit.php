@@ -1,6 +1,4 @@
-<?php 
-
-include 'header.php';
+<?php include 'header.php';
 $id = !empty($_GET ['id']) ? (int)$_GET['id'] : 0;
 $error ='';
 if($id){
@@ -33,7 +31,7 @@ $cat = $query -> fetch_object();
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Edit category</h1>
+      <h1>Chỉnh sửa danh mục</h1>
 
     </section>
     <!-- Main content -->

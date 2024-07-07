@@ -24,7 +24,7 @@ if (isset($_POST['name'])) {
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Careate category</h1>
+      <h1>Thêm danh mục</h1>
 
     </section>
     <!-- Main content -->
@@ -43,7 +43,7 @@ if (isset($_POST['name'])) {
        
         <div class="form-group">
             <label for="">Tên danh mục</label>
-            <input type="text" class="form-control" name="name" placeholder="Input name">
+            <input type="text" class="form-control" name="name" placeholder="Điền tên danh mục muốn tạo">
         </div>
          
         <div class="form-group">

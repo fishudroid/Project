@@ -2,20 +2,25 @@
 $id = !empty($_GET ['id']) ? (int)$_GET['id'] : 0;
 $error = '';
 if($id){
-if($conn -> query("DELETE FROM category WHERE id = $id")){  
-    header('location: category.php');
-}else{
-    $error = 'Xóa thất bại !';
-}
-}else{
-    $error = 'Bạn chưa chọn danh mục để xóa';
+  $query = $conn->query("SELECT * FROM product WHERE category_id = $id");
+  if ($query->num_rows > 0){
+    $error = 'Danh mục này đang có sản phẩm. Không thể thao tác tác vụ này.';
+  } else {
+    if($conn -> query("DELETE FROM category WHERE id = $id")){  
+      header('location: category.php');
+    }else{
+      $error = 'Xóa thất bại !';
+    }
+  } 
+} else {
+  $error = 'Bạn chưa chọn danh mục để xóa';
 }
 
 ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Delete category</h1>
+      <h1>Xoá danh mục</h1>
 
     </section>
     <!-- Main content -->
