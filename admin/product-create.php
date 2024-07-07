@@ -73,7 +73,7 @@ if (isset($_POST['name'])) {
           </div>
         <?php endif; ?>
 
-        <form action="" method="GET" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
           <div class="row">
             <div class="col-md-8">
 
@@ -137,11 +137,11 @@ if (isset($_POST['name'])) {
 
                   <div class="form-group">
                     <label for="">Ảnh sản phẩm</label>
-                    <input type="file" class="form-control" name="img">
+                    <input type="file" class="form-control" name="image">
                   </div>
 
                   <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lưu lại</button>
-                  <a href="category.php" class="btn btn-warning"><i class="fa fa-arrow-left"></i>Quay lại</a>
+                  <a href="product.php" class="btn btn-warning"><i class="fa fa-arrow-left"></i>Quay lại</a>
         </form>
       </div>
     </div>

@@ -50,7 +50,7 @@ if (!empty($_GET['search_key'])) {
                 <td>
                   <?php echo $cat ->price ; ?>
                   
-                  <span class="badge"> <?php echo $cat ->sale ; ?></span>
+                  <span class="badge"> <?php echo $cat ->sale; ?></span>
                   
                 </td>
                 <td><?php echo $cat ->status == 0 ? 'Tạm ẩn' : 'Hiển thị' ; ?></td>
