@@ -24,7 +24,7 @@ if (isset($_POST['email'])){
                 $errors['failed']='Tài khoản của bạn không có quyền đăng nhập vào trang quản trị';
             }else{
               $_session['admin_login']=$admin;
-              header('location:index.php';)
+              header('location:index.php');
             }
             
         }else {
@@ -58,7 +58,7 @@ if (isset($_POST['email'])){
 <div class="alert alert-danger">
     <button type="button" class="close" data-dismiss="alert" aria-hidder="true">&times;</button>
     <?php foreach($errors as $errors);?>
-    <li><?php echo $errors;?></li>
+        <li><?php echo $errors;?></li>
     <?php endforeach;?> 
 </div>
 <?php endif;?>
