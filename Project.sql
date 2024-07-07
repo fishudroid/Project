@@ -38,6 +38,16 @@ CREATE TABLE customer(
     status TINYINT NULL DEFAULT '1'
 );
 
+CREATE TABLE cart(
+    id INT primary key auto_increment,
+    product_id INT NOT NULL,
+     customer_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price FLOAT NOT NULL,
+    FOREIGN KEY(product_id) REFERENCES product(id),
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+
 CREATE TABLE orders(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NULL,

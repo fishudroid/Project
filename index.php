@@ -1,4 +1,8 @@
-<?php include 'header.php';?>
+<?php 
+include 'header.php';
+$newProduct=$conn->query("SELECT *,price-(price*sale)/100 as salePrice FROM product order by id ");
+$saleProduct=$conn->query("SELECT *, price-(price*sale)/100 as salePrice")
+?>
     <!-- end header section -->
     <!-- slider section -->
     <section class="slider_section ">
