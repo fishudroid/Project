@@ -51,13 +51,13 @@ if (isset($_POST['name'])) {
             
             <div class="radio">
                 <label>
-                    <input type="radio" name="status" value="1" checked=>
+                    <input type="radio" name="status" value="0" checked=>
                   Hiển thị
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="status" value="0">
+                    <input type="radio" name="status" value="1" checked>
                   Tạm ẩn
                 </label>
             </div>

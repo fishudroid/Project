@@ -64,7 +64,7 @@ $cat = $query -> fetch_object();
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="status" value="0"><?php echo $cat -> status == 0 ? 'checked' : '';?>>
+                    <input type="radio" name="status" value="0"<?php echo $cat -> status == 0 ? 'checked' : '';?>>
                   Tạm ẩn
                 </label>
             </div>
