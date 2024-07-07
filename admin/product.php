@@ -1,8 +1,19 @@
 <?php include 'header.php';
-$data = $conn->query("SELECT product.*, category.name as cat_name FROM product JOIN category ON category.id = product.category_id Order By id DESC"); 
-if (!empty($_GET['search_key'])) { 
+$data = $conn->query("SELECT product.*, category.name as cat_name FROM product JOIN category ON category.id = product.category_id Order By id DESC");
+$cats = $conn->query("SELECT id, name FROM category ORDER BY id ASC");
+
+$key = isset($_GET['search_key']) ? $_GET['search_key'] : '';
+$cat = isset($_GET['cat']) ? $_GET['cat'] : '';
+
+if (!empty($key) && empty($cat)) { 
     $key = $_GET['search_key']; 
     $data = $conn->query("SELECT product.*, category.name as cat_name FROM product JOIN category ON category.id = product.category_id WHERE product.name LIKE '%$key%' Order By product.id DESC");
+} else if (empty($key) && !empty($cat)) {  
+  $key = $_GET['search_key']; 
+  $data = $conn->query("SELECT product.*, category.name as cat_name FROM product JOIN category ON category.id = product.category_id WHERE product.category_id = $cat Order By product.id DESC");
+} else if (!empty($key) && !empty($cat)) { 
+  $key = $_GET['search_key']; 
+  $data = $conn->query("SELECT product.*, category.name as cat_name FROM product JOIN category ON category.id = product.category_id WHERE product.name LIKE '%$key%' AND product.name LIKE '%$key%' Order By product.id DESC");
 }
 ?>
   <div class="content-wrapper">
@@ -21,9 +32,18 @@ if (!empty($_GET['search_key'])) {
                 <div class="form-group">
                     <input class="form-control" name="search-key" placeholder="Input field">
                 </div>
+
+                <div class="form-group">
+                    
+                    <select name="cat" class="form-control">
+                      <option value="">Danh mục</option>
+                      <?php while($cat = $cats->fetch_object()) : ?>
+                          <option value="<?php echo $cat->id;?>"><?php echo $cat->name;?></option>
+                        <?php endwhile;?>
+                    </select>
+                    
+                </div>
             
-                
-              
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 <a href="product-create.php" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
             </form>
@@ -33,12 +53,13 @@ if (!empty($_GET['search_key'])) {
      <table class="table table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price / Sale</th>
-                <th>Status</th>
-                <th>Image</th>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Mô tả</th>
+                <th>Danh mục</th>
+                <th>Giá / Sale</th>
+                <th>Trạng thái</th>
+                <th>Ảnh</th>
             </tr>
         </thead>
         <tbody>
@@ -46,22 +67,23 @@ if (!empty($_GET['search_key'])) {
             <tr>
                 <td><?php echo $cat ->id ; ?></td>
                 <td><?php echo $cat ->name ; ?></td>
+                <td><?php echo $cat ->description ?></td>
                 <td><?php echo $cat ->cat_name; ?></td>
                 <td>
                   <?php echo $cat ->price ; ?>
                   
-                  <span class="badge"> <?php echo $cat ->sale; ?></span>
+                  <span class="badge"> <?php echo $cat ->sale; ?> %</span>
                   
                 </td>
                 <td><?php echo $cat ->status == 0 ? 'Tạm ẩn' : 'Hiển thị' ; ?></td>
                 <td>
                   
-                  <img src="../uploads/<?php echo $prod->image; ?>" width="40" >
+                  <img src="../uploads/<?php echo $cat->image;?>" width="40">
                   
                 </td>
                 <td class="text-right">
-                    <a href="product-edit.php?id=<?php echo $prod ->id ;?>" class="btn btn-sm btn-primary"><i class="fa fa fa-edit"></i> Edit</a>
-                    <a onclick="return confirm('Bạn có chắc chắn xóa không')"  href="" class="product-delete.php?id=<?php echo $prod ->id; ?>"><i class="fa fa fa-trash"></i> Delete</a>
+                    <a href="product-edit.php?id=<?php echo $cat ->id ;?>" class="btn btn-sm btn-primary"><i class="fa fa fa-edit"></i> Edit</a>
+                    <a onclick="return confirm('Bạn có chắc chắn xóa không')"  href="product-delete.php?id=<?php echo $cat ->id; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Xoá</a>
                 </td>
        <?php endwhile;?>
      </table>

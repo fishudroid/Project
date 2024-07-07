@@ -1,6 +1,12 @@
 <?php 
 ob_start();
+session_start();
 include '../connect.php';
+if (empty($_SESSION['admin_login'])) {
+  header( "location: login:php");
+}
+
+$admin = $_SESSION['admin_login'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,6 +23,7 @@ include '../connect.php';
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->

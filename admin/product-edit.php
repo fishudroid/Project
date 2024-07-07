@@ -1,12 +1,15 @@
 <?php include 'header.php';
+$id = !empty($_GET['id']) ? (int)($_GET['id']) : 0;
+$query = $conn->query("SELECT * FROM product WHERE id = $id");
+$prod = $query->fetch_object();
 $cats = $conn->query("SELECT id, name FROM category ORDER BY id ASC");
 $errors = [];
-$image = '';
+$image = $prod->image;
 if (!empty($_FILES['img']['name'])) {
-  $image = time() . '-' . $_FILES['img']['name'];
+  $image = time().'-'. $_FILES['img']['name'];
   $tmp_name = $_FILES['img']['tmp_name'];
 
-  move_uploaded_file($tmp_name, '../uploads/' . $image);
+  move_uploaded_file($tmp_name, '../uploads/'. $image);
 }
 if (isset($_POST['name'])) {
   $name = $_POST['name'];
@@ -40,23 +43,23 @@ if (isset($_POST['name'])) {
     $errors['image'] = 'Ảnh sản phẩm không được trống';
   }
 
-  $query = $conn->query("SELECT * FROM product WHERE name = '$name'");
+  $query = $conn->query("SELECT * FROM product WHERE name = '$name' AND id != '$id'");
   if ($query->num_rows > 0) {
     $errors['name'] = 'Tên sản phẩm đã được sử dụng';
   }
   if (!$errors) {
-    $sql = "INSERT INTO product (name, price, sale, image, category_id, description, status) VALUES ('$name', '$price', '$sale', '$image', '$category_id', '$description', '$status')";
+    $sql = "UPDATE product SET name = '$name', price = '$price', sale = '$sale', image = '$image', category_id = '$category_id', description = '$description', status = '$status' WHERE id = $id";
 
     echo $sql; // Print the SQL query
 
     echo "Name: $name, Price: $price, Sale: $sale, Image: $image, Category ID: $category_id, Description: $description, Status: $status"; // Print variables
 
     if ($conn->query($sql)) { // Execute the query
-      header('location: product.php');
+        header('location: product.php');
     } else {
-      $error = "Error: " . $conn->error; // Get a specific error message
+        $error = "Error: " . $conn->error; // Get a specific error message
     }
-  }
+}
 }
 ?>
 <div class="content-wrapper">
@@ -73,9 +76,9 @@ if (isset($_POST['name'])) {
         <?php if ($errors) : ?>
           <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <?php foreach ($errors as $error) : ?>
-              <li><?php echo $error; ?></li>
-            <?php endforeach; ?>
+            <?php foreach($errors as $error) : ?>
+              <li><?php echo $error;?></li>
+            <?php endforeach;?>
           </div>
         <?php endif; ?>
 
@@ -89,12 +92,12 @@ if (isset($_POST['name'])) {
 
                   <div class="form-group">
                     <label for="">Tên sản phẩm</label>
-                    <input type="text" class="form-control" name="name" placeholder="Điền tên sản phẩm muốn thêm">
+                    <input value="<?php echo $prod->name;?>" type="text" class="form-control" name="name" placeholder="Điền tên sản phẩm muốn thêm">
                   </div>
 
                   <div class="form-group">
                     <label for="">Mô tả sản phẩm</label>
-                    <textarea name="description" class="form-control description" rows="8" placeholder="Nhập nội dung sản phẩm"></textarea>
+                    <textarea name="description" class="form-control description" rows="8" placeholder="Nhập nội dung sản phẩm"><?php echo $prod->description;?></textarea>
                   </div>
 
                 </div>
@@ -110,45 +113,44 @@ if (isset($_POST['name'])) {
 
                       <select name="category_id" class="form-control">
                         <option value="">---- Chọn một danh mục ----</option>
-                        <?php while ($cat = $cats->fetch_object()) : ?>
-                          <option value="<?php echo $cat->id; ?>"><?php echo $cat->name; ?></option>
-                        <?php endwhile; ?>
+                        <?php while($cat = $cats->fetch_object()) : ?>
+                          <option <?php echo $cat->id == $prod->category_id ? 'selected' : ''?> value="<?php echo $cat->id;?>"><?php echo $cat->name;?></option>
+                        <?php endwhile;?>
                       </select>
                     </div>
 
                     <div class="form-group">
                       <label for="">Giá sản phẩm</label>
-                      <input type="number" class="form-control" name="price" placeholder="Điền giá sản phẩm">
+                      <input value="<?php echo $prod->price;?>" type="number" class="form-control" name="price" placeholder="Điền giá sản phẩm">
                     </div>
 
                     <div class="form-group">
                       <label for="">Giá Khuyến Mãi</label>
-                      <input type="number" class="form-control" name="sale" placeholder="Điền tỷ lệ khuyến mãi sản phẩm">
+                      <input value="<?php echo $prod->sale;?>" type="number" class="form-control" name="sale" placeholder="Điền tỷ lệ khuyến mãi sản phẩm">
                     </div>
 
                     <div class="form-group">
                       <div class="radio">
                         <label>
-                          <input type="radio" name="status" value="1" checked=>
+                          <input type="radio" name="status" value="1" <?php echo $prod->status == 1 ? 'checked' : ''?>>
                           Hiển thị
                         </label>
                       </div>
                       <div class="radio">
                         <label>
-                          <input type="radio" name="status" value="0" checked=>
+                          <input type="radio" name="status" value="0" <?php echo $prod->status == 0 ? 'checked' : ''?>>
                           Ẩn
                         </label>
                       </div>
                     </div>
                     <div class="form-group">
-
+                      
                       <label for="">Ảnh sản phẩm</label>
                       <input type="file" class="form-control" id="input_img" name="img" onchange="SHOW_IMG()">
-                      <img src="" width="100%" id="img">
-
+                      <img src="../uploads/<?php echo $prod->image;?>" width="100%" id="img">
                     </div>
                     <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lưu lại</button>
-                    <a href="category.php" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Quay lại</a>
+                    <a href="product.php" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Quay lại</a>
                   </div>
                 </div>
               </div>
