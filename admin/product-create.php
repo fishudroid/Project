@@ -14,7 +14,7 @@ if (isset($_POST['name'])) {
   if (!$error) { 
     $sql = "INSERT INTO category (name, status) VALUES ('$name', '$status')"; 
     if ($conn->query($sql)) { 
-      header('location: category.php'); 
+      header('location: product.php'); 
     } else { 
       $error = 'Thêm mới không thành công, vui lòng thử lại';
     }
