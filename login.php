@@ -1,5 +1,8 @@
 <?php 
 include 'header.php';
+if ($customer) {
+  header('location : index.php');
+}
 $errors = [];
 if (isset($_POST['email'])) {
   $email = $_POST['email'];

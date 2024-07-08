@@ -17,11 +17,23 @@ if (isset($_POST['name'])) {
     $errors['phone'] = 'Số điện thoại không được để trống';
   } else if (strlen($phone) < 10) {
     $errors['phone'] = 'Số điện thoại tối thiểu 10 chữ số';
+  } else {
+    $sqlcheckP = "SELECT phone FROM customer WHERE phone = '$phone'";
+    $querycheckP = $conn->query($sqlcheckP);
+    if ($querycheckP->num_rows > 0) {
+      $errors['phone'] = 'Số điện thoại này đã được sử dụng. Vui lòng dùng số điện thoại khác để đăng ký';
+    }
   }
   if ($email == '') {
     $errors['email'] = 'Email không được để trống';
   } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors['email'] = 'Email không đúng định dạng';
+  } else {
+    $sqlcheckM = "SELECT email FROM customer WHERE email = '$email'";
+    $querycheckM = $conn->query($sqlcheckM);
+    if ($querycheckM->num_rows > 0) {
+      $errors["email"] = 'Email này đã được sử dụng. Vui lòng dùng email khác để đăng ký';
+    }
   }
   if ($address == '') {
     $errors['address'] = 'Địa chỉ không được để trống';
