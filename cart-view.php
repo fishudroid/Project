@@ -3,7 +3,11 @@ if (!$customer) {
     header('location: login.php');
 }
 $customer_id = $customer->id;
-$sql = "SELECT c.id, c.price, c.quantity, SUM(c.price * c.quantity) as sub_total, p.name, p.image FROM cart c JOIN product p ON p.id = c.product_id WHERE c.customer = $customer_id GROUP BY c.id";
+$sql = "SELECT c.id, c.price, c.quantity, SUM(c.price * c.quantity) as sub_total, p.name, p.image 
+        FROM cart c 
+        JOIN product p ON p.id = c.product_id 
+        WHERE c.customer_id = $customer_id  -- Changed to customer_id
+        GROUP BY c.id";
 $query = $conn->query($sql);
 ?>
 
@@ -19,19 +23,19 @@ $query = $conn->query($sql);
     <div class="container">
         <div class="heading_container heading_center">
             <h2>
-                Your Shopping cart
+                Giỏ hàng
             </h2>
         </div>
     </div>
 
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Image</th>
-                <th>Product name</th>
-                <th>Product Quantity</th>
-                <th>Price</th>
-                <th>Sub total</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
+                <th>Tổng</th>
                 <th></th>
             </tr>
         </thead>
@@ -54,7 +58,10 @@ $query = $conn->query($sql);
         </tbody>
     </table>
 
-
+    <div class="text-center">
+        <a href="index.php" class="btn btn-success"> Tiếp tục thêm món</a>
+        <a href="checkout.php" class="btn btn-danger"> Thanh toán</a>
+    </div>
 
 </section>
 <?php include 'footer.php'; ?>
