@@ -25,7 +25,7 @@ $sale_product = $conn->query("SELECT *, price - ((price * sale) / 100) as sale_p
                 </div>
                 <div class="detail-box">
                   <h5>
-                  <a href="product.php?id=<?php echo $np->id;?>"><?php echo $np->name; ?></a>
+                    <a href="product.php?id=<?php echo $np->id; ?>"><?php echo $np->name; ?></a>
                   </h5>
                   <p>
                     <?php echo substr(strip_tags($np->description), 0, 100); ?>
@@ -124,7 +124,7 @@ $sale_product = $conn->query("SELECT *, price - ((price * sale) / 100) as sale_p
                 </div>
                 <div class="detail-box">
                   <h5>
-                    <a href="product.php?id=<?php echo $sp->id;?>"><?php echo $sp->name; ?></a>
+                    <a href="product.php?id=<?php echo $sp->id; ?>"><?php echo $sp->name; ?></a>
                   </h5>
                   <p>
                     <?php echo substr(strip_tags($sp->description), 0, 100); ?>
@@ -132,10 +132,10 @@ $sale_product = $conn->query("SELECT *, price - ((price * sale) / 100) as sale_p
                   <div class="options">
                     <h6>
                       <?php if ($sp->sale > 0) : ?>
-                      <s><?php echo number_format($sp->price); ?> vnđ</s>
-                      <?php echo number_format($sp->sale_price); ?> vnđ
+                        <s><?php echo number_format($sp->price); ?> vnđ</s>
+                        <?php echo number_format($sp->sale_price); ?> vnđ
                       <?php else : ?>
-                        <?php echo number_format($sp->sale_price);?>
+                        <?php echo number_format($sp->sale_price); ?>
                       <?php endif; ?>
                     </h6>
                     <a href="">
@@ -221,11 +221,10 @@ $sale_product = $conn->query("SELECT *, price - ((price * sale) / 100) as sale_p
         <div class="detail-box">
           <div class="heading_container">
             <h2>
-              Chúng tôi là Pizza Ba Anh Em
+              Chúng tôi là A Tavola
             </h2>
           </div>
           <p>
-
           </p>
           <a href="about.php">
             Read More
@@ -237,120 +236,4 @@ $sale_product = $conn->query("SELECT *, price - ((price * sale) / 100) as sale_p
 </section>
 
 <!-- end about section -->
-
-<!-- book section -->
-<section class="book_section layout_padding">
-  <div class="container">
-    <div class="heading_container">
-      <h2>
-        Đặt bàn
-      </h2>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form_container">
-          <form action="">
-            <div>
-              <input type="text" class="form-control" placeholder="Họ Tên" />
-            </div>
-            <div>
-              <input type="text" class="form-control" placeholder="Số điện thoại" />
-            </div>
-            <div>
-              <input type="email" class="form-control" placeholder="Địa chỉ mail" />
-            </div>
-            <div>
-              <select class="form-control nice-select wide">
-                <option value="" disabled selected>
-                  Bao nhiêu người?
-                </option>
-                <option value="">
-                  2
-                </option>
-                <option value="">
-                  3
-                </option>
-                <option value="">
-                  4
-                </option>
-                <option value="">
-                  5
-                </option>
-              </select>
-            </div>
-            <div>
-              <input type="date" class="form-control">
-            </div>
-            <div class="btn_box">
-              <button>
-                Đặt lịch ngay
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="map_container ">
-          <div id="googleMap"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end book section -->
-
-<!-- client section -->
-
-<section class="client_section layout_padding-bottom">
-  <div class="container">
-    <div class="heading_container heading_center psudo_white_primary mb_45">
-      <h2>
-        What Says Our Customers
-      </h2>
-    </div>
-    <div class="carousel-wrap row ">
-      <div class="owl-carousel client_owl-carousel">
-        <div class="item">
-          <div class="box">
-            <div class="detail-box">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-              </p>
-              <h6>
-                Moana Michell
-              </h6>
-              <p>
-                magna aliqua
-              </p>
-            </div>
-            <div class="img-box">
-              <img src="images/client1.jpg" alt="" class="box-img">
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="box">
-            <div class="detail-box">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-              </p>
-              <h6>
-                Mike Hamell
-              </h6>
-              <p>
-                magna aliqua
-              </p>
-            </div>
-            <div class="img-box">
-              <img src="images/client2.jpg" alt="" class="box-img">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- end client section -->
-
 <?php include 'footer.php'; ?>

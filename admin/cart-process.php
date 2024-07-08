@@ -49,12 +49,12 @@ if($action == 'delete'){
 
 function checkExists($product_id,$customer_id){
     global $conn;
-    $sqlCheckE ="SELECT id, quantity FROM cart WHERE product_id = $id AND customer_id =
-     $customer_id";
+    $sqlCheckE ="SELECT id, quantity FROM cart WHERE product_id = $product_id AND customer_id = $customer_id";
      $queryE =$conn ->query($sqlCheckE);
 
      if($queryE ->num_rows > 0){
         return $queryE ->fetch_object() ;
      }
      return false;
+}
 }

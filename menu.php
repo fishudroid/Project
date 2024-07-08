@@ -17,6 +17,15 @@ if (!empty($_GET['cat'])) {
 <style>
   <?php include 'css/style.css'; ?>
 </style>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="images/hero-bg.jpg" alt="">
+    </div>
+  </div>
+</body>
 <section class="food_section layout_padding">
   <div class="container">
     <div class="heading_container heading_center">

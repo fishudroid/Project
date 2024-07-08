@@ -1,6 +1,7 @@
 <?php
 include 'connect.php';
 ?>
+
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -32,16 +33,15 @@ include 'connect.php';
 
 </head>
 
-<body class="sub_page">
+<body>
+
   <div class="hero_area">
     <div class="bg-box">
-      <img src="images/hero-bg.jpg" alt="">
+      <img src="images/banner.jpg" alt="">
     </div>
-
     <!-- header section strats -->
     <header class="header_section">
       <div class="container">
-
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.php">
             <span>
@@ -54,22 +54,13 @@ include 'connect.php';
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav  mx-auto ">
-              <li class="nav-item active">
-                <a class="nav-link" href="index.php">Trang chủ <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="menu.php">Menu</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.php">Giới thiệu</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="book.php">Đặt món</a>
-              </li>
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+              <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
             </ul>
             <div class="user_option">
-              <a href="login.php">
+              <a href="profile.php" class="user_link">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </a>
               <a class="cart_link" href="cart-view.php">
@@ -127,20 +118,24 @@ include 'connect.php';
                 </svg>
               </a>
               <form class="form-inline">
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
+              <a href="order-online.php" class="order_online">
+                Order Online
+              </a>
             </div>
           </div>
         </nav>
       </div>
     </header>
+    <!-- end header section -->
+    <?php
+    $url = $_SERVER['SCRIPT_NAME'];
+    if (strpos($url, 'index.php')) {
+      include 'banner.php';
+    }
+    ?>
   </div>
 </body>
-<?php
-$url = $_SERVER['SCRIPT_NAME'];
-if (strpos($url, 'index.php')) {
-  include 'banner.php';
-}
-?>

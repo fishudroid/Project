@@ -33,7 +33,7 @@ $query = $conn -> query($sql);
         </tr>
     </thead>
     <tbody>
-        <?php while($cart = $query -> fetch_object()); ?>
+        <?php while($cart = $query -> fetch_object()) : ?>
         <tr>
             <td>
                 <img src="uploads/<?php echo $cart -> image;?>" alt="" width="40">

@@ -35,6 +35,14 @@ if (isset($_POST['email'])) {
   }
 }
 ?>
+<body class="sub_page">
+
+<div class="hero_area">
+  <div class="bg-box">
+    <img src="images/hero-bg.jpg" alt="">
+  </div>
+</div>
+</body>
 <!-- book section -->
 <section class="book_section layout_padding">
   <div class="container">
