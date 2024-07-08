@@ -211,9 +211,16 @@
 <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="plugins/fastclick/fastclick.js"></script>
+<!-- Summernote App -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script>
+  $('.description').summernote({
+    height: 250
+  })
+</script>
 </body>
 </html>

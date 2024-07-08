@@ -8,7 +8,7 @@ Id int primary key auto_increment,
 Name varchar(100) not null,
 Email varchar(100) not null,
 Password varchar(100) not null,
-Role varchar(50) null default ‘member’
+Role varchar(50) null default 'member'
 );
 
 CREATE TABLE category(
@@ -23,6 +23,7 @@ CREATE TABLE product(
     price FLOAT NOT NULL,
     sale FLOAT NULL DEFAULT '0',
     image VARCHAR(200) NOT NULL,
+    description text null,
     category_id INT NOT NULL,
     status TINYINT NULL DEFAULT '1',
     FOREIGN KEY(category_id) REFERENCES category(id) 
@@ -36,6 +37,16 @@ CREATE TABLE customer(
     password VARCHAR(100) NOT NULL,
     address VARCHAR(255) NULL,
     status TINYINT NULL DEFAULT '1'
+);
+
+CREATE TABLE cart(
+    id INT primary key auto_increment,
+    product_id INT NOT NULL,
+     customer_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price FLOAT NOT NULL,
+    FOREIGN KEY(product_id) REFERENCES product(id),
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 
 CREATE TABLE orders(
@@ -105,3 +116,30 @@ CREATE TABLE rentals(
     FOREIGN KEY(order_id) REFERENCES orders(id),
     FOREIGN KEY(product_id) REFERENCES product(id)
 );
+
+Insert into admin(name,email,password,Role) values
+('admin root','admin@gmail.com','123456','admin'),
+('Trần Văn Nam','namtv@gmail.com','123456','number');
+
+
+
+Insert into 'category' ('id','name','status') values
+(1,'Burger',1),
+(2,'pizza',1),
+(3,'Khoai tây chiên'1);
+
+
+
+Insert into 'product' ('id','name','price','sale','image','description','category_id','status') values
+(1,'Burger gà',40000,20,),
+(2,'Pizza hải sản',200000,15,)
+
+
+
+
+
+
+
+
+
+

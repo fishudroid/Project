@@ -2,7 +2,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Dashboard</h1>
+      <h1>Bảng điều khiển</h1>
 
     </section>
     <!-- Main content -->
@@ -10,7 +10,7 @@
      
       <div class="box">
         <div class="box-body">
-          Start creating your amazing application!
+          Chào mừng <?php echo $admin->name; ?>.
         </div>
       </div>
       <!-- /.box -->
