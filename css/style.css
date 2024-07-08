@@ -706,6 +706,9 @@ a:focus {
   font-size: 16px;
 }
 
+.book_section .form-container .btn_box a{
+  color: white;
+}
 .book_section .form_container button {
   margin-top: 15px;
   border: none;
