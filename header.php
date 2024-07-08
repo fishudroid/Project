@@ -2,8 +2,13 @@
 session_start();
 include 'connect.php';
 $customer = null;
+$totalcart = 0;
 if (!empty($_SESSION['cus_login'])) {
   $customer = $_SESSION['cus_login'];
+
+  $sqlCart = "SELECT SUM(quantity) AS total FROM cart WHERE customer_id = $customer->id";
+  $sqlCart = $conn->query($sqlCart)->fetch_object();
+  $totalcart = $sqlCart->total;
 }
 ?>
 
@@ -75,6 +80,7 @@ if (!empty($_SESSION['cus_login'])) {
                 </a>
                 <a class="cart_link" href="cart-view.php">
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                  <span class="cart-notification"><?php echo $totalcart;?></span>
                 </a>
                 <a href="order-online.php" class="order_online">
                   Order Online

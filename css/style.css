@@ -1020,5 +1020,22 @@ a:focus {
   color: #fff !important;
 }
 
+.cart_link {
+  position: relative;
+}
 
-
+.cart_link .cart-notification {
+  position: absolute;
+  top: -20;
+  right: -20;
+  display: inline-flex;
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  color: black;
+  border-radius: 50%;
+  border: 0.5px solid white;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+}
