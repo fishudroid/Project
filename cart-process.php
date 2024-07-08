@@ -49,12 +49,21 @@ if($action == 'delete'){
 
 function checkExists($product_id,$customer_id){
     global $conn;
+<<<<<<< HEAD
     $sqlCheckE ="SELECT id, quantity FROM cart WHERE product_id = $id AND customer_id =
      $customer_id";
      $queryE =$conn ->query($sqlCheckE);
+=======
+    $sqlCheckE ="SELECT id, quantity FROM cart WHERE product_id = $product_id AND customer_id = $customer_id"; 
+    $queryE =$conn ->query($sqlCheckE);
+>>>>>>> 5c1287712fbb9533390ccccac43b9f6f2342fe02
 
      if($queryE ->num_rows > 0){
         return $queryE ->fetch_object() ;
      }
      return false;
+<<<<<<< HEAD
+=======
+    }
+>>>>>>> 5c1287712fbb9533390ccccac43b9f6f2342fe02
 }
