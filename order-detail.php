@@ -3,8 +3,9 @@ include 'header.php';
 if (!$customer){
     header('location:login.php');
 }
-$customer_id=$customer->id;
-$sql="SELECT o.*,SUM(od.quantity)as quantity,SUM(od.price*od.quantity) as total FROM oders o JOIN order_detail od ON od.order_id=o.id WHERE od.customer=$customer_id ORDER BY id DESC";
+$customer_id = $customer -> id;
+$id = !empty($_GET['id']) ? (int)$_GET['id'] : 0;
+$sql = "SELECT od.price ,od.quantity, SUM(od.price*od.quantity) as total,p.name FROM oders_detail od JOIN produc p ON p.id=od.product_id WHERE od.order_id=$id GROUP BY p.id";
 $query =$conn->query($sql);
 ?>
 <section class="food_section layout_padding">
@@ -13,39 +14,31 @@ $query =$conn->query($sql);
         <h2>Your Order detail</h2>
 </div>
 <div class="main-order">
-    
+    <div class ="od-header"></div> 
+</div>
+    <div class ="od-number"></div>
+    <div class ="od-customer"></div>
 <table class="table table-hover">
     <thead>
         <tr>
             <th>STT</th>
-            <th>Ngày Đặt</th>
-            <th>Họ Tên</th>
-            <th>Số ĐT</th>
-            <th>Tổng SL</th>
-            <th>Tổng TIền</th>
-            <th></th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn Giá</th>
+            <th>Tổng Tiền</th>
         </tr>
 </thead>
 <tbody>
-    <?php $total=1;while ($cart=$query->fetch_object());
-    ?>
+    <?php $total = 1; while ($cart=$query->fetch_object()) :?>
     <tr>
         <td>
            <?php echo $n;?>
 </td>
 <td><?php echo $n;?></td>
-<td><?php echo $od->order_date;?></td>
 <td><?php echo $od->name;?></td>
-<td><?php echo $od->phone;?></td>
 <td><?php echo $od->quantity;?></td>
+<td><?php echo number_format($od->price);?>vnđ</td>
 <td><?php echo number_format($od->total);?>vnđ</td>
-        </form>
-</td>
-<td><?php echo $cart->price;?></td>
-<td><?php echo $cart->sub_total;?></td>
-<td>
-    <a herf="cart_process.php?cart_id=<?php echo cart->id;?>&action=delete" class="btn btn-sm btn-danger">Chi Tiết</a>
-</td>
 </tr>
 <?php $n++; endwhile;?>
 </tbody>
@@ -64,4 +57,3 @@ $query =$conn->query($sql);
 </section>
 
 <?php include 'footer.php';?>
-
