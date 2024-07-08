@@ -119,7 +119,8 @@ CREATE TABLE rentals(
 
 Insert into admin(name,email,password,Role) values
 ('admin root','admin@gmail.com','123456','admin'),
-('Trần Văn Nam','namtv@gmail.com','123456','number');
+('Trần Văn Nam','namtv@gmail.com','123456','number'),
+('Đặng Hoàng Duy Hùng','duyhung@gmail.com','67890','editor');
 
 
 
