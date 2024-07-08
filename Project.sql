@@ -49,6 +49,15 @@ CREATE TABLE orders(
     order_note VARCHAR(255) NULL,
     FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
+CREATE TABLE Cart(
+    id int primary key AUTO_INCREMENT,
+    product_id int NOT NULL,
+    customer_id int NOT NULL,
+    quantity int NOT NULL,
+    price int NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES product(id),
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
 
 CREATE TABLE order_detail(
     order_id INT NOT NULL,
