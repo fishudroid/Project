@@ -1006,11 +1006,11 @@ a:focus {
 }
 /*# sourceMappingURL=style.css.map */
 
-.product-item {
+.item {
   position: relative;
 }
 
-.product-item span.sale-notification {
+.item span.sale-notification {
   position: absolute;
   display: inline-block;
   background-color: red;
@@ -1022,4 +1022,8 @@ a:focus {
   color: #ffffff;
   font-style: italic;
   border-radius: 10px;
+}
+
+.food_section .filters_menu li.active a {
+  color: #fff !important;
 }

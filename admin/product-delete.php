@@ -16,7 +16,7 @@ if($id){
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Xoá danh mục</h1>
+      <h1>Xoá sản phẩm</h1>
 
     </section>
     <!-- Main content -->

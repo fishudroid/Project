@@ -42,7 +42,7 @@ if (isset($_PoST['old_password'])) {
 <div class="content-wrapper">
 
     <section class="content-header">
-        <h1>Change password</h1>
+        <h1>Đổi mật khẩu</h1>
     </section>
 
     <section class="content">

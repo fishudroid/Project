@@ -19,7 +19,7 @@ if (!empty($key) && empty($cat)) {
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Product</h1>
+      <h1>Sản phẩm</h1>
 
     </section>
     <!-- Main content -->
