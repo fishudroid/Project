@@ -7,7 +7,6 @@ if (!$customer){
 $customer_id=$customer->id;
 $sql="SELECT c.idc.price,c.quantity,c.product_id, SUM(c.price*c.quantity) as sub_total,p.name,p.image FROM cart JOIN product p ON p.id=c.product_id WHERE c.customer_id=$customer_id GROUP BY c.id";
 $query=$conn->query($sql);
-}
 ?>
 <section class="food_section layout_padding">
     <div class="container">
@@ -55,7 +54,7 @@ $query=$conn->query($sql);
         </tr>
     </thead>
     <tbody>
-        <?php $total=0;
+        <?php $total=0; ?>
         <?php while($cart = $query -> fetch_object()) : ?>
         <tr>
             <td>
