@@ -35,7 +35,7 @@ $product = $query->fetch_object();
             <form actions="cart-process.php" method="GET" class="form-inline">
               <div class="forn-group">
                 <input type="hidden" class="form-control" name="id" value="<?php echo $product->id;?>">
-                <input type="number" class="form-control" name="quantity"  placeholder="Số lượng">
+                <input type="number" class="form-control" name="quantity" value="1">
               </div>
               <button type="submit" class="btn btn-success ml-1"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
         </div>
