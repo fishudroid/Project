@@ -32,7 +32,7 @@
                                 A Tavola được sinh ra từ tình yêu và niềm đam mê bất tận với ẩm thực Ý. Chúng tôi mong muốn mang đến cho thực khách Việt Nam những trải nghiệm ẩm thực Ý đích thực nhất, từ hương vị đến không gian. Hãy đến với A Tavola, nơi mỗi bữa ăn là một bữa tiệc và mỗi khoảnh khắc là một kỷ niệm.
                                 </p>
                                 <div class="btn-box">
-                                    <a href="" class="btn1">
+                                    <a href="menu.php" class="btn1">
                                         Order Now
                                     </a>
                                 </div>

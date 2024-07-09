@@ -29,14 +29,14 @@ $product = $query->fetch_object();
             </h2>
           </div>
           <p>
-            <?php echo $product->description; ?>
+            <?php echo substr(strip_tags($product->description), 0, 500); ?>
           </p>
           <?php if ($customer) : ?>
-            <form actions="" method="POST" class="form-inline" roles="" form>
+            <form actions="cart-process.php" method="GET" class="form-inline">
               <div class="forn-group">
-                <input type="number" class="form-control" id=""  placeholder="Số lượng">
+                <input type="hidden" class="form-control" name="id" value="<?php echo $product->id;?>">
+                <input type="number" class="form-control" name="quantity"  placeholder="Số lượng">
               </div>
-
               <button type="submit" class="btn btn-success ml-1"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
         </div>
         </form>

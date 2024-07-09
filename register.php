@@ -53,10 +53,10 @@ if (isset($_POST['name'])) {
   }
   if (!$errors) {
     $pass_hash = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO customer(name, email, address, password) VALUES ('$name', '$email', '$address', '$pass_hash')";
+    $sql = "INSERT INTO customer(name, email, address, phone password) VALUES ('$name', '$email', '$address' '$phone' '$pass_hash')";
 
     if ($conn->query($sql)) {
-      header('location : login.php');
+      header('location: login.php');
     } else {
       $errors['failed'] = 'Đăng ký không thành công, vui lòng thử lại';
     }

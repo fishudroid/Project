@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 if (!$customer) {
-  header('location : login.php');
+  header('location: login.php');
 }
 $errors = [];
 if (isset($_POST['name'])) {
@@ -41,7 +41,7 @@ if (isset($_POST['name'])) {
     $pass_hash = password_hash($password, PASSWORD_DEFAULT);
     $sql = "UPDATE customer SET name='$name', phone='$phone', email='$email', address='$address', WHERE id = $customer->id";
     if ($conn->query($sql)) {
-      header('location : logout.php');
+      header('location: logout.php');
     } else {
       $errors['failed'] = 'Cập nhật không thành công, vui lòng thử lại';
     }

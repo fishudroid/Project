@@ -49,7 +49,7 @@ $query = $conn->query($sql);
                         <?php echo $cart->name; ?> </td>
                     <td><?php echo $cart->quantity; ?></td>
                     <td><?php echo $cart->price; ?></td>
-                    <td><?php echo $cart->sbb_total; ?></td>
+                    <td><?php echo $cart->sub_total; ?></td>
                     <td>
                         <a href="cart-process.php?cart_id=<?php echo $cart->id; ?>&action=delete" class="btn btn sm btn-danger">&times;</a>
                     </td>

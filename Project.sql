@@ -42,7 +42,7 @@ CREATE TABLE customer(
 CREATE TABLE cart(
     id INT primary key auto_increment,
     product_id INT NOT NULL,
-     customer_id INT NOT NULL,
+    customer_id INT NOT NULL,
     quantity INT NOT NULL,
     price FLOAT NOT NULL,
     FOREIGN KEY(product_id) REFERENCES product(id),

@@ -3,12 +3,12 @@
 include 'header.php';
 if($customer) {
     $customer_id =$customer -> id;
-    $produc_id = !empty($_GET['id']) ? (int) $_GET['id'] : 0;
+    $product_id = !empty($_GET['id']) ? (int) $_GET['id'] : 0;
     $quatity = !empty($_GET['quatity']) ? (int) $_GET['quatity'] : 1;
     $action = !empty($_GET['action']) ? $_GET['action'] : 'add';
 
 if($action == 'add'){
-    $checkE = checkExists($produc_id, $customer_id);
+    $checkE = checkExists($product_id, $customer_id);
     if($checkE){
         $qtt = $check ->quantity;
         $newQtt = $qtt+1;
@@ -34,7 +34,7 @@ if($action == 'add'){
 if($action == 'delete'){
     $cart_id = !empty($_GET['cart_id']) ? (int) $_GET['cart_id'] : 0;
     $conn ->query("DELETE FROM cart WHERE id =$cart_id");
-    header('location: cart-view.php' );
+    header('location: cart-view.php');
 
 }
 

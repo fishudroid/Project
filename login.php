@@ -1,7 +1,7 @@
 <?php 
 include 'header.php';
 if ($customer) {
-  header('location : index.php');
+  header('location: index.php');
 }
 $errors = [];
 if (isset($_POST['email'])) {
@@ -28,7 +28,7 @@ if (isset($_POST['email'])) {
       $customer = $query->fetch_object();
       if (password_verify($password, $customer->password)) {
         $_SESSION['cus_login'] = $customer;
-        header('location : index.php');
+        header('location: index.php');
       } else {
         $errors['failed'] = 'Mật khẩu không chính xác. Vui lòng kiểm tra lại';
       }
