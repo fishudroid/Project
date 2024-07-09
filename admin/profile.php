@@ -29,7 +29,7 @@ if (isset($_PoST['old_password'])) {
             $sqlUpdate = "UPDATE admin SET name='$name', email = '$email' WHERE id = $admin->id";
             if ($conn->query($sqlUpdate)) {
                 unset($_SESSION['admin_login']);
-                header('location : login.php');
+                header('location: login.php');
             } else {
                 $errors['failed'] = 'Có lỗi, vui lòng thử lại';
             }

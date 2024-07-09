@@ -29,7 +29,7 @@ if (isset($_POST['email'])) {
                 $errors['failed'] = 'Tài khoản của bạn không có quyền quản trị viên.';
             } else {
                 $_SESSION['admin_login'] = $admin;
-                header('location : index.php');
+                header('location: index.php');
             }
         } else {
             $errors['failed'] = 'Tài khoản hoặc mật khẩu không đúng.';
