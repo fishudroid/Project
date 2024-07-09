@@ -59,7 +59,7 @@ if (!empty($_GET['cat'])) {
                 </div>
                 <div class="detail-box">
                   <h5>
-                    <a href="product.php?id=<?php echo $np->id; ?>"><?php echo $sp->name; ?></a>
+                    <a href="product.php?id=<?php echo $sp->id; ?>"><?php echo $sp->name; ?></a>
                   </h5>
                   <p>
                     <?php echo substr(strip_tags($sp->description), 0, 100); ?>
