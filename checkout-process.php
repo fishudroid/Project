@@ -26,7 +26,7 @@ if(!empty($_SESSION{'cus_login'})){
              $sqlDetail="INSERT INTO order_detail(order_id,product_id,price,quantity) VALUES ('$order_id','$product_id','$price','$quantity')";
              $conn->query($sqlDetail);   
           }
-          header ('location: checkout-sccess.php')
+          header ('location: checkout-sccess.php');
      }
      header('loction:checkout-error.php');
   }else{

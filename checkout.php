@@ -55,7 +55,7 @@ $query=$conn->query($sql);
         </tr>
     </thead>
     <tbody>
-        <?php $total=0;
+        <?php $total=0; ?>
         <?php while($cart = $query -> fetch_object()) : ?>
         <tr>
             <td>
